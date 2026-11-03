@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            font-family: Roboto, Arial, sans-serif;
+        }
+
+        /* whole top bar: 3 parts (left | middle | right) */
+        .nav {
+            height: 56px;
+            background-color: #0f0f0f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        /* LEFT part (empty for now - put menu + logo here later) */
+        .nav-left {
+            flex: 1;
+        }
+
+        /* MIDDLE part: search box + search button + mic */
+        .middle {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .search-wrap {
+            display: flex;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .search-bar {
+            flex: 1;
+            height: 40px;
+            padding: 0 16px;
+            background-color: #121212;
+            border: 1px solid #303030;
+            border-right: none;
+            border-radius: 20px 0 0 20px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-bar:focus {
+            border-color: #1c62b9;
+        }
+
+        .search-btn {
+            width: 64px;
+            height: 40px;
+            background-color: #222222;
+            border: 1px solid #303030;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-btn:hover {
+            background-color: #303030;
+        }
+
+        .mic-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #181818;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mic-btn:hover {
+            background-color: #272727;
+        }
+
+        /* RIGHT part: create, apps, bell, profile */
+        .right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 24px;
+        }
+
+        .right img {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .right img.profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .search-btn img,
+        .mic-btn img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+
+        <!-- Left -->
+        <div class="nav-left"></div>
+
+        <!-- Middle -->
+        <div class="middle">
+            <div class="search-wrap">
+                <input type="text" placeholder="Search" class="search-bar">
+                <button class="search-btn"><img src="search.png" alt="search"></button>
+            </div>
+            <button class="mic-btn"><img src="mic.png" alt="mic"></button>
+        </div>
+
+        <!-- Right -->
+        <div class="right">
+            <img src="create.png" alt="create">
+            <img src="more.png" alt="more">
+            <img src="bell.png" alt="notifications">
+            <img src="Ellipse 1 (2).png" alt="profile" class="profile">
+        </div>
+
+    </div>
+    
+</body>
+</html>

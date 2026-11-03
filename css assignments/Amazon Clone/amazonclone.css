@@ -1,0 +1,102 @@
+.navbar{
+    background-color: #121921;
+    display: flex;
+    /* justify-content: space-between; */
+    color: white;
+    gap: 70px;
+    align-items: center;
+}
+.all{
+    background-color: white;
+    color: black;
+}
+.searchbar{
+    display: flex;
+    background-color: aliceblue;
+    color: #121921;
+    width: 400px;
+    justify-content: space-between;
+}
+.serach{
+    background-color: white;
+    color: black;
+}
+
+.sub{
+    position: absolute;
+    bottom: 20px;
+    color: aliceblue;
+}
+.nav2{
+    background-color: #121921 ;
+    color: white;
+    display: flex;
+   gap: 25px;
+    
+}
+.logcation{
+    display: flex;
+}
+.india{
+    display: flex;
+}
+.prime {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.banner {
+    position: relative;
+}
+
+.bg {
+    width: 100%;
+   
+}
+
+.banner {
+    position: relative;
+}
+
+.bg {
+    width: 100%;
+}
+
+.cards {
+    display: flex;
+    gap: 50px;
+    position: absolute;
+    top: 250px;
+    left: 80px;
+}
+
+.card {
+    background: white;
+    color: black;
+    width: 200px;
+    padding: 12px;
+}
+
+/*  */
+.signin{
+     background: white;
+    color: black;
+    width: 150px;
+    height: 180px;
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    
+}
+.box{
+    background-color:#FED813 ;
+    color: black;
+    width: 150px;
+    height: 30px;
+    border-radius: 15%;
+    text-align: center;
+    justify-content: center;
+   
+}
