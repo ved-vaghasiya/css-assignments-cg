@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netflix - Home</title>
+
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --netflix-red: #e50914;
+    --page-black: #141414;
+    --text-white: #ffffff;
+    --text-muted: #b3b3b3;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--page-black);
+    color: var(--text-white);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/*  2. NAVIGATION BAR */
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 18px 4.2%;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.75),
+        transparent
+    );
+}
+
+.nav-left,
+.nav-right,
+.nav-links,
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    gap: 34px;
+}
+
+.brand {
+    width: 92px;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    gap: 19px;
+    font-size: 13px;
+}
+
+.nav-links a {
+    color: #e5e5e5;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.nav-right {
+    gap: 18px;
+}
+
+.nav-right > a > img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.nav-right .kids-link {
+    font-size: 13px;
+}
+
+.profile-link {
+    gap: 7px;
+}
+
+.nav-right .profile-link > img:first-child {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+}
+
+.nav-right .profile-link .down-arrow {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* 3. HERO SECTION*/
+
+.hero {
+    position: relative;
+
+    height: 57vw;
+    min-height: 650px;
+    max-height: 810px;
+
+    background-image: url("Title-Image.png");
+    background-size: cover;
+    background-position: center top;
+}
+
+/* Dark gradient over the hero image */
+.hero-shade {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            var(--page-black) 0%,
+            transparent 28%
+        ),
+        linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.45),
+            transparent 65%
+        );
+}
+
+/* Featured show information */
+.hero-content {
+    position: absolute;
+    top: 31%;
+    left: 4.2%;
+    z-index: 1;
+}
+
+.series-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.n-symbol {
+    color: var(--netflix-red);
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.hero h1 {
+    margin-left: -5px;
+
+    font-size: clamp(52px, 7.5vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    font-weight: 800;
+}
+
+/* Play and More Info buttons */
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    min-height: 38px;
+    padding: 8px 17px;
+
+    border-radius: 4px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: opacity 0.2s ease;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* White Play button */
+.button-light {
+    background-color: #ffffff;
+    color: #111111;
+}
+
+.button-light img {
+    filter: brightness(0);
+}
+
+/* Grey More Info button */
+.button-muted {
+    background-color: rgba(109, 109, 110, 0.75);
+    color: #ffffff;
+}
+
+/* Age rating on the right */
+.age-rating {
+    position: absolute;
+    right: 0;
+    bottom: 20%;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 95px;
+    padding: 9px 24px 9px 12px;
+
+    background-color: rgba(51, 51, 51, 0.6);
+    border-left: 3px solid #dcdcdc;
+
+    font-size: 14px;
+}
+
+
+/*4. MOVIE CATALOG*/
+
+.catalog {
+    position: relative;
+    z-index: 2;
+
+    margin-top: -105px;
+    padding-bottom: 20px;
+}
+
+.content-row {
+    margin-bottom: 31px;
+    padding-left: 4.2%;
+}
+
+/* Movie row headings */
+.content-row h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/* Small arrow beside headings */
+.row-arrow {
+    color: #54b9c5;
+    font-size: 28px;
+    line-height: 18px;
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.content-row:hover .row-arrow {
+    opacity: 1;
+}
+
+
+/* 5. MOVIE POSTERS */
+
+/* Normal poster rows */
+.poster-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+
+    padding-right: 4.2%;
+}
+
+.poster {
+    display: block;
+    overflow: hidden;
+
+    border-radius: 3px;
+
+    transition: transform 0.25s ease;
+}
+
+.poster img {
+    width: 100%;
+    aspect-ratio: 260 / 146;
+    object-fit: cover;
+}
+
+/* Slight zoom when hovering over a poster */
+.poster:hover {
+    transform: scale(1.04);
+}
+
+
+/* 6. TOP 10 SECTION */
+
+.top-ten-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+
+    padding-right: 4.2%;
+}
+
+.ranked-poster {
+    display: flex;
+    align-items: flex-end;
+
+    min-width: 0;
+    overflow: hidden;
+
+    transition: transform 0.25s ease;
+}
+
+.ranked-poster:hover {
+    transform: scale(1.04);
+}
+
+/* Large number images */
+.rank-number {
+    width: 43%;
+    max-width: 95px;
+    height: auto;
+
+    object-fit: contain;
+    object-position: bottom;
+}
+
+/* Movie image beside each number */
+.rank-art {
+    width: 57%;
+    height: 145px;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 3px;
+}
+
+
+/* 7. FOOTER*/
+
+.footer {
+    width: min(850px, 78%);
+    margin: 55px auto 30px;
+
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Social media icons */
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    margin-bottom: 25px;
+}
+
+.social-links img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* Four columns of footer links */
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+
+    margin-bottom: 24px;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Footer hover effect */
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Service code button */
+.service-code {
+    display: inline-block;
+
+    padding: 7px 9px;
+    margin-bottom: 18px;
+
+    border: 1px solid #808080;
+}
+
+.copyright {
+    font-size: 11px;
+}
+
+
+/* ==============================
+   8. TABLET RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 14px 3%;
+    }
+
+    .nav-left {
+        gap: 20px;
+    }
+
+    .brand {
+        width: 78px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .nav-right {
+        gap: 12px;
+    }
+
+    .hero {
+        min-height: 560px;
+        background-position: 58% top;
+    }
+
+    .hero-content {
+        top: 32%;
+        left: 3%;
+    }
+
+    .catalog {
+        margin-top: -75px;
+    }
+
+    .content-row {
+        padding-left: 3%;
+    }
+
+    .poster-list,
+    .top-ten-list {
+        padding-right: 3%;
+        gap: 6px;
+    }
+
+    .content-row h2 {
+        font-size: 16px;
+    }
+
+    .rank-art {
+        height: 115px;
+    }
+
+    .footer {
+        width: 88%;
+    }
+}
+
+
+/* 
+   9. MOBILE RESPONSIVE DESIGN
+ */
+
+@media (max-width: 600px) {
+
+    /* Mobile navigation */
+    .navbar {
+        align-items: flex-start;
+        padding: 13px 4%;
+    }
+
+    .nav-left {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .brand {
+        width: 72px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 8px 13px;
+
+        max-width: 290px;
+        font-size: 11px;
+    }
+
+    .nav-links a:nth-child(n + 4) {
+        display: none;
+    }
+
+    .nav-right {
+        gap: 10px;
+    }
+
+    .nav-right .kids-link,
+    .nav-right > a:first-child {
+        display: none;
+    }
+
+    .nav-right > a > img {
+        width: 19px;
+        height: 19px;
+    }
+
+    .nav-right .profile-link > img:first-child {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Mobile hero section */
+    .hero {
+        height: 105vw;
+        min-height: 500px;
+        max-height: 650px;
+
+        background-position: 57% top;
+    }
+
+    .hero-shade {
+        background:
+            linear-gradient(
+                to top,
+                var(--page-black) 0%,
+                transparent 40%
+            ),
+            linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.38),
+                transparent 90%
+            );
+    }
+
+    .hero-content {
+        top: 42%;
+        left: 4%;
+    }
+
+    .series-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .n-symbol {
+        font-size: 18px;
+    }
+
+    .hero h1 {
+        font-size: 58px;
+        letter-spacing: -2px;
+    }
+
+    .hero-buttons {
+        margin-top: 16px;
+    }
+
+    .button {
+        min-height: 32px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .button img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .age-rating {
+        bottom: 17%;
+
+        min-width: 65px;
+        padding: 7px 12px;
+
+        font-size: 12px;
+    }
+
+    /* Movie rows on mobile */
+    .catalog {
+        margin-top: -70px;
+    }
+
+    .content-row {
+        margin-bottom: 24px;
+        padding-left: 4%;
+    }
+
+    .content-row h2 {
+        margin-bottom: 9px;
+        font-size: 14px;
+    }
+
+    /* Horizontal scrolling without JavaScript */
+    .poster-list,
+    .top-ten-list {
+        grid-template-columns: repeat(5, 46vw);
+        gap: 7px;
+
+        overflow-x: auto;
+
+        padding-right: 4%;
+        padding-bottom: 5px;
+
+        scrollbar-width: none;
+    }
+
+    .poster-list::-webkit-scrollbar,
+    .top-ten-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .poster {
+        width: 46vw;
+    }
+
+    .ranked-poster {
+        width: 42vw;
+    }
+
+    .rank-number {
+        width: 42%;
+    }
+
+    .rank-art {
+        width: 58%;
+        height: 115px;
+    }
+
+    /* Mobile footer */
+    .footer {
+        width: 88%;
+        margin-top: 40px;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px 15px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVIGATION BAR-->
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="#" class="brand">
+                <img src="NetflixLogoSvg.png" alt="Netflix">
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">TV Shows</a>
+                <a href="#">Movies</a>
+                <a href="#">New &amp; Popular</a>
+                <a href="#">My List</a>
+            </nav>
+        </div>
+
+        <div class="nav-right">
+            <a href="#" aria-label="Search">
+                <img src="Search.png" alt="">
+            </a>
+            <a href="#" class="kids-link">Children</a>
+            <a href="#" aria-label="Notifications">
+                <img src="NotificationBell.png" alt="">
+            </a>
+            <a href="#" class="profile-link">
+                <img src="ProfileIMG.png" alt="Profile">
+                <img
+                    class="down-arrow"
+                    src="DownArrow.png"
+                    alt=""
+                >
+            </a>
+        </div>
+    </header>
+
+
+    <!-- 2. MAIN CONTENT -->
+    <main>
+        <!-- Featured movie section -->
+        <section class="hero">
+            <div class="hero-shade"></div>
+            <div class="hero-content">
+                <p class="series-label">
+                    <span class="n-symbol">N</span>
+                    SERIES
+                </p>
+                <h1>MAID</h1>
+                <div class="hero-buttons">
+                    <a href="#" class="button button-light">
+                        <img src="Play.png" alt="">
+                        Play
+                    </a>
+                    <a href="#" class="button button-muted">
+                        <img src="Detail.png" alt="">
+                        More Info
+                    </a>
+                </div>
+            </div>
+            <div class="age-rating">
+                <span>16+</span>
+            </div>
+        </section>
+
+
+        <!-- 3. MOVIE CATALOG -->
+        <div class="catalog">
+            <!-- Continue watching row -->
+            <section class="content-row">
+                <h2>
+                    See again
+                    <span class="row-arrow">›</span>
+                </h2>
+                <div class="poster-list">
+                    <a href="#" class="poster">
+                        <img src="section 1.1.png" alt="You">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src=section 1.2.png" alt="Series poster">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 1.3.png" alt="Universe">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 1.4.png" alt="The Last Kingdom">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 1.5.png" alt="Money Heist">
+                    </a>
+                </div>
+            </section>
+
+
+            <!-- Top 10 row -->
+            <section class="content-row">
+                <h2>
+                    Top 10 in your country
+                    <span class="row-arrow">›</span>
+                </h2>
+                <div class="top-ten-list">
+                    <a href="#" class="ranked-poster">
+                        <img class="rank-number"
+                             src="Rank - 01.png" alt="1">
+                        <img class="rank-art"
+                             src="section 2.1.png" alt="Top title 1">
+                    </a>
+                    <a href="#" class="ranked-poster">
+                        <img class="rank-number"
+                             src="Rank - 02.png" alt="2">
+                        <img class="rank-art"
+                             src="section 2.2.png" alt="Top title 2">
+                    </a>
+                    <a href="#" class="ranked-poster">
+                        <img class="rank-number"
+                             src="Rank - 03.png" alt="3">
+                        <img class="rank-art"
+                             src="section 2.3.png" alt="Top title 3">
+                    </a>
+                    <a href="#" class="ranked-poster">
+                        <img class="rank-number"
+                             src="Rank - 04.png" alt="4">
+                        <img class="rank-art"
+                             src="section 2.4.png" alt="Top title 4">
+                    </a>
+                    <a href="#" class="ranked-poster">
+                        <img class="rank-number"
+                             src="Rank - 05.png" alt="5">
+                        <img class="rank-art"
+                             src="section 2.5.png" alt="Top title 5">
+                    </a>
+                </div>
+            </section>
+
+
+            <!-- Trending movies row -->
+            <section class="content-row">
+                <h2>
+                    Trending now
+                    <span class="row-arrow">›</span>
+                </h2>
+                <div class="poster-list">
+                    <a href="#" class="poster">
+                        <img src="section 3.1.png" alt="Trending title 1">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 3.2.png" alt="Trending title 2">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 3.3.png" alt="Trending title 3">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 3.4.png" alt="Trending title 4">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 3.5.png" alt="Trending title 5">
+                    </a>
+                </div>
+            </section>
+
+
+            <!-- Sci-fi shows row -->
+            <section class="content-row">
+                <h2>
+                    Sci-fi shows
+                    <span class="row-arrow">›</span>
+                </h2>
+                <div class="poster-list">
+
+                    <a href="#" class="poster">
+                        <img src="section 4.1.png" alt="Sci-fi show 1">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 4.2.png" alt="Sci-fi show 2">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 4.3.png" alt="Sci-fi show 3">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 4.4.png" alt="Sci-fi show 4">
+                    </a>
+                    <a href="#" class="poster">
+                        <img src="section 4.5.png" alt="Sci-fi show 5">
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <!-- 4. FOOTER-->
+    <footer class="footer">
+        <!-- Social media icons -->
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">
+                <img src="facebook.png" alt="">
+            </a>
+            <a href="#" aria-label="Instagram">
+                <img src="instagram.png" alt="">
+            </a>
+            <a href="#" aria-label="Twitter">
+                <img src="twitter.png" alt="">
+            </a>
+            <a href="#" aria-label="YouTube">
+                <img src="youtube.png" alt="">
+            </a>
+        </div>
+
+
+        <!-- Footer links -->
+        <div class="footer-links">
+            <div>
+                <a href="#">Audio Description</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div>
+                <a href="#">Help Centre</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+            <div>
+                <a href="#">Gift Cards</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Corporate Information</a>
+            </div>
+            <div>
+                <a href="#">Media Centre</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <a href="#" class="service-code">Service Code</a>
+        <p class="copyright">
+            © 1997-2026 Netflix, Inc.
+        </p>
+    </footer>
+</body>
+</html>
