@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ludo Board</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: white;
+        }
+
+        .board {
+            width: min(95vw, 600px);
+            aspect-ratio: 1;
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-template-rows: repeat(15, 1fr);
+            border: 2px solid black;
+        }
+
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .red-home {
+            grid-area: 1 / 1 / 7 / 7;
+        }
+
+        .green-home {
+            grid-area: 1 / 10 / 7 / 16;
+        }
+
+        .blue-home {
+            grid-area: 10 / 1 / 16 / 7;
+        }
+
+        .yellow-home {
+            grid-area: 10 / 10 / 16 / 16;
+        }
+
+        .inner {
+            width: 68%;
+            height: 68%;
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            justify-items: center;
+            align-items: center;
+            padding: 8%;
+            gap: 8%;
+        }
+
+        .token {
+            width: 70%;
+            aspect-ratio: 1;
+            border: 3px solid;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .red-token {
+            border-color: red;
+        }
+
+        .green-token {
+            border-color: green;
+        }
+
+        .blue-token {
+            border-color: blue;
+        }
+
+        .yellow-token {
+            border-color: yellow;
+        }
+
+        .lane {
+            display: grid;
+        }
+
+        .vertical {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+        }
+
+        .horizontal {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .top-lane {
+            grid-area: 1 / 7 / 7 / 10;
+        }
+
+        .bottom-lane {
+            grid-area: 10 / 7 / 16 / 10;
+        }
+
+        .left-lane {
+            grid-area: 7 / 1 / 10 / 7;
+        }
+
+        .right-lane {
+            grid-area: 7 / 10 / 10 / 16;
+        }
+
+        .cell {
+            border: 1px solid #333;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(10px, 3vw, 22px);
+        }
+
+        .green-cell {
+            background: green;
+        }
+
+        .red-cell {
+            background: red;
+        }
+
+        .blue-cell {
+            background: blue;
+        }
+
+        .yellow-cell {
+            background: yellow;
+        }
+
+        .star {
+            font-size: clamp(12px, 3vw, 22px);
+            color: black;
+        }
+
+        .center {
+            grid-area: 7 / 7 / 10 / 10;
+            background: conic-gradient(
+                from 45deg,
+                yellow 0deg 90deg,
+                blue 90deg 180deg,
+                red 180deg 270deg,
+                green 270deg 360deg
+            );
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="board">
+
+    <!-- RED HOME -->
+    <div class="home red red-home">
+        <div class="inner">
+            <div class="token red-token"></div>
+            <div class="token red-token"></div>
+            <div class="token red-token"></div>
+            <div class="token red-token"></div>
+        </div>
+    </div>
+
+    <!-- GREEN HOME -->
+    <div class="home green green-home">
+        <div class="inner">
+            <div class="token green-token"></div>
+            <div class="token green-token"></div>
+            <div class="token green-token"></div>
+            <div class="token green-token"></div>
+        </div>
+    </div>
+
+    <!-- BLUE HOME -->
+    <div class="home blue blue-home">
+        <div class="inner">
+            <div class="token blue-token"></div>
+            <div class="token blue-token"></div>
+            <div class="token blue-token"></div>
+            <div class="token blue-token"></div>
+        </div>
+    </div>
+
+    <!-- YELLOW HOME -->
+    <div class="home yellow yellow-home">
+        <div class="inner">
+            <div class="token yellow-token"></div>
+            <div class="token yellow-token"></div>
+            <div class="token yellow-token"></div>
+            <div class="token yellow-token"></div>
+        </div>
+    </div>
+
+    <!-- TOP GREEN PATH -->
+    <div class="lane vertical top-lane">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell green-cell"></div>
+        <div class="cell green-cell"></div>
+        <div class="cell green-cell"></div>
+
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell green-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell green-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell green-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell green-cell"></div>
+        <div class="cell"></div>
+    </div>
+
+    <!-- BOTTOM BLUE PATH -->
+    <div class="lane vertical bottom-lane">
+        <div class="cell"></div>
+        <div class="cell blue-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell blue-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell blue-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell blue-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell blue-cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell blue-cell"></div>
+        <div class="cell"></div>
+    </div>
+
+    <!-- LEFT RED PATH -->
+    <div class="lane horizontal left-lane">
+        <div class="cell"></div>
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell red-cell"></div>
+        <div class="cell red-cell"></div>
+        <div class="cell red-cell"></div>
+        <div class="cell red-cell"></div>
+        <div class="cell red-cell"></div>
+        <div class="cell red-cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+
+    <!-- RIGHT YELLOW PATH -->
+    <div class="lane horizontal right-lane">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+
+        <div class="cell yellow-cell"></div>
+        <div class="cell yellow-cell"></div>
+        <div class="cell yellow-cell"></div>
+        <div class="cell yellow-cell"></div>
+        <div class="cell yellow-cell"></div>
+        <div class="cell yellow-cell"></div>
+
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"><span class="star">★</span></div>
+        <div class="cell"></div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="center"></div>
+
+</div>
+
+</body>
+</html>
